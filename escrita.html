@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba de Expresión e Interacción Escritas - Nivel A1 Escolar</title>
+    <title>Prueba 3. Expresión e interacción escritas - Nivel A1 Escolar</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,6 +12,14 @@
             padding: 20px;
             max-width: 800px;
             background-color: #f9f9f9;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 5px;
         }
         .instrucciones {
             background-color: #f1f8fe;
@@ -31,6 +39,9 @@
         }
         .formulario {
             margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #fff;
         }
         .form-group {
             margin-bottom: 15px;
@@ -51,14 +62,17 @@
             box-sizing: border-box;
         }
         textarea {
-            min-height: 100px;
+            min-height: 80px;
             resize: vertical;
         }
         .radio-group {
             margin: 10px 0;
+            display: flex;
+            gap: 15px;
         }
         .radio-option {
-            margin-right: 15px;
+            display: flex;
+            align-items: center;
         }
         .btn-enviar {
             background-color: #3498db;
@@ -68,7 +82,7 @@
             font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
         }
         .btn-enviar:hover {
             background-color: #2980b9;
@@ -90,32 +104,53 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             z-index: 1000;
         }
+        .email-form {
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .email-field {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
         @media (max-width: 768px) {
             .timer-container {
                 position: static;
                 margin-bottom: 20px;
                 text-align: center;
             }
+            .radio-group {
+                flex-direction: column;
+                gap: 5px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="timer-container">
-        Tiempo restante: <span id="timer">45:00</span>
+        Tiempo restante: <span id="timer">25:00</span>
     </div>
 
-    <h1>Prueba de expresión e interacción escritas</h1>
-    <p><strong>Nivel A1 Escolar</strong></p>
+    <div class="header">
+        <h1>Prueba 3. Comprensión de expresión e interacción escritas</h1>
+        <p><strong>Nivel A1 para escolares</strong> | Duración: 25 minutos</p>
+    </div>
     
+    <div class="instrucciones">
+        <p>La prueba de <strong>Expresión e interacción escritas</strong> contiene 2 tareas.</p>
+        <p><strong>Instrucción importante:</strong> Escribe tus respuestas únicamente en los espacios designados.</p>
+    </div>
+
     <!-- Tarea 1 -->
     <div class="tarea">
-        <h2>Tarea 1</h2>
+        <h2>Tarea 1: Formulario de inscripción</h2>
         <div class="instrucciones">
-            <p><strong>INSTRUCCIONES:</strong> Quieres ser socio de un club deportivo juvenil. Debes completar este formulario.</p>
+            <p><strong>INSTRUCCIONES:</strong> Quieres ser socio de un club deportivo juvenil. Completa este formulario con tus datos.</p>
         </div>
 
         <div class="formulario">
-            <h3>Club deportivo "La carrera"</h3>
+            <h3 style="text-align: center; color: #2c3e50;">Club deportivo "La carrera"</h3>
             
             <div class="form-group">
                 <label for="nombre">Nombre</label>
@@ -170,55 +205,49 @@
                 <label for="preferencia">¿Prefieres hacer deporte solo o con amigos? ¿Por qué?</label>
                 <textarea id="preferencia" name="preferencia" required></textarea>
             </div>
-            
-            <button type="button" class="btn-enviar">ENVIAR</button>
         </div>
     </div>
 
     <!-- Tarea 2 -->
     <div class="tarea">
-        <h2>Tarea 2</h2>
+        <h2>Tarea 2: Correo electrónico</h2>
         <div class="instrucciones">
-            <p><strong>INSTRUCCIONES:</strong> Estudias en un nuevo instituto. Escribe un correo electrónico a tu amigo/a. En él debes:</p>
+            <p><strong>INSTRUCCIONES:</strong> Estudias en un nuevo instituto. Escribe un correo electrónico a tu amigo/a (30-40 palabras). Debes incluir:</p>
             <ul>
-                <li>saludar;</li>
-                <li>decir dónde está el instituto;</li>
-                <li>describir cómo es tu nuevo instituto;</li>
-                <li>explicar por qué te gusta;</li>
-                <li>despedirte.</li>
+                <li>Un saludo</li>
+                <li>La ubicación del instituto</li>
+                <li>Descripción del instituto</li>
+                <li>Por qué te gusta</li>
+                <li>Una despedida</li>
             </ul>
-            <p><strong>Número de palabras: entre 30 y 40.</strong></p>
+            <div class="contador-palabras">Número de palabras: <span id="contador">0</span>/40</div>
         </div>
 
-        <div class="formulario">
-            <div class="form-group">
+        <div class="email-form">
+            <div class="email-field">
                 <label for="para">Para:</label>
-                <input type="text" id="para" name="para" required>
+                <input type="text" id="para" name="para" required style="width: 100%;">
             </div>
             
-            <div class="form-group">
-                <label for="cc">C.C:</label>
-                <input type="text" id="cc" name="cc">
-            </div>
-            
-            <div class="form-group">
+            <div class="email-field">
                 <label for="asunto">Asunto:</label>
-                <input type="text" id="asunto" name="asunto">
+                <input type="text" id="asunto" name="asunto" style="width: 100%;">
             </div>
             
-            <div class="form-group">
+            <div class="email-field">
                 <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" required></textarea>
-                <div class="contador-palabras">Palabras: <span id="contador">0</span>/40</div>
+                <textarea id="mensaje" name="mensaje" required style="min-height: 150px;"></textarea>
             </div>
-            
-            <button type="button" class="btn-enviar">ENVIAR CORREO</button>
         </div>
     </div>
 
+    <div style="text-align: center; margin-top: 30px;">
+        <button type="button" class="btn-enviar">ENVIAR RESPUESTAS</button>
+    </div>
+
     <script>
-        // Temporizador de 45 minutos
-        let timeLeft = 45 * 60;
+        // Temporizador de 25 minutos
+        let timeLeft = 25 * 60;
         const timerElement = document.getElementById('timer');
         
         function updateTimer() {
@@ -243,7 +272,7 @@
         const timerInterval = setInterval(updateTimer, 1000);
         updateTimer();
 
-        // Contador de palabras
+        // Contador de palabras para el correo
         const mensajeTextarea = document.getElementById('mensaje');
         const contador = document.getElementById('contador');
         
@@ -259,11 +288,9 @@
             }
         });
 
-        // Simulación de envío (en un caso real, esto enviaría los datos a un servidor)
-        document.querySelectorAll('.btn-enviar').forEach(boton => {
-            boton.addEventListener('click', function() {
-                alert('Respuestas enviadas. En una prueba real, esto se enviaría para su corrección.');
-            });
+        // Simulación de envío
+        document.querySelector('.btn-enviar').addEventListener('click', function() {
+            alert('Respuestas enviadas. En una prueba real, esto se enviaría para su corrección.');
         });
     </script>
 </body>
