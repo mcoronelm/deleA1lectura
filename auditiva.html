@@ -1,1 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba 2. Comprensión Auditiva - Nivel A1 Escolar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 800px;
+        }
+        .instrucciones {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 20px;
+        }
+        .pregunta {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f0f7ff;
+            border-radius: 5px;
+        }
+        .opciones-imagenes {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .opcion-imagen {
+            text-align: center;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .opcion-imagen:hover {
+            transform: scale(1.05);
+        }
+        .opcion-imagen img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        .opcion-imagen.selected img {
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+        .timer-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        #submit-btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        #submit-btn:hover {
+            background-color: #27ae60;
+        }
+        #results {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        .matching-question {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .matching-select {
+            padding: 5px;
+            border-radius: 4px;
+            min-width: 200px;
+        }
+        @media (max-width: 768px) {
+            .timer-container {
+                position: static;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            .opciones-imagenes {
+                flex-direction: column;
+                align-items: center;
+            }
+            .matching-question {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .matching-select {
+                margin-top: 5px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        Tiempo restante: <span id="timer">20:00</span>
+    </div>
 
+    <h1>Prueba 2. Comprensión auditiva</h1>
+    <p><strong>Duración:</strong> 20 minutos.</p>
+    
+    <div class="instrucciones">
+        <p>La prueba de <strong>Comprensión auditiva</strong> tiene cuatro tareas. Debes responder a 25 preguntas.</p>
+    </div>
+
+    <form id="exam-form">
+        <!-- Tarea 1 -->
+        <h2>Tarea 1</h2>
+        <div class="instrucciones">
+            <p><strong>INSTRUCCIONES:</strong> Escucharás cinco conversaciones. Hablan dos personas. Selecciona la imagen (A, B o C) que responde a cada pregunta.</p>
+            <p><em>Nota: En una prueba real, aquí habría un reproductor de audio.</em></p>
+        </div>
+
+        <!-- Pregunta 1 -->
+        <div class="pregunta">
+            <p>1. ¿Qué van a comer hoy?</p>
+            <div class="opciones-imagenes">
+                <div class="opcion-imagen" data-pregunta="1" data-opcion="A">
+                    <img src="https://via.placeholder.com/150/FF5733/FFFFFF?text=Comida+A" alt="Opción A">
+                    <p>A</p>
+                </div>
+                <div class="opcion-imagen" data-pregunta="1" data-opcion="B">
+                    <img src="https://via.placeholder.com/150/33FF57/FFFFFF?text=Comida+B" alt="Opción B">
+                    <p>B</p>
+                </div>
+                <div class="opcion-imagen" data-pregunta="1" data-opcion="C">
+                    <img src="https://via.placeholder.com/150/3357FF/FFFFFF?text=Comida+C" alt="Opción C">
+                    <p>C</p>
+                </div>
+            </div>
+            <input type="hidden" name="p1" value="">
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="pregunta">
+            <p>2. ¿Qué va a hacer el chico mañana?</p>
+            <div class="opciones-imagenes">
+                <div class="opcion-imagen" data-pregunta="2" data-opcion="A">
+                    <img src="https://via.placeholder.com/150/FF5733/FFFFFF?text=Actividad+A" alt="Opción A">
+                    <p>A</p>
+                </div>
+                <div class="opcion-imagen" data-pregunta="2" data-opcion="B">
+                    <img src="https://via.placeholder.com/150/33FF57/FFFFFF?text=Actividad+B" alt="Opción B">
+                    <p>B</p>
+                </div>
+                <div class="opcion-imagen" data-pregunta="2" data-opcion="C">
+                    <img src="https://via.placeholder.com/150/3357FF/FFFFFF?text=Actividad+C" alt="Opción C">
+                    <p>C</p>
+                </div>
+            </div>
+            <input type="hidden" name="p2" value="">
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="pregunta">
+            <p>3. ¿Qué hace la chica los domingos?</p>
+            <div class="opciones-imagenes">
+                <div class="opcion-imagen" data-pregunta="3" data-opcion="A">
+                    <img src="https://via.placeholder.com/150/FF5733/FFFFFF?text=Domingo+A" alt="Opción A">
+                    <p>A</p>
+                </div>
+                <div class="opcion-imagen" data-pregunta="3" data-opcion="B">
+                    <img src="https://via.placeholder.com/150/33FF57/FFFFFF?text=Domingo+B" alt="Opción B">
+                    <p>B</p>
+                </div>
+                <div class="opcion-imagen" data-pregunta="3" data-opcion="C">
+                    <img src="https://via.placeholder.com/150/3357FF/FFFFFF?text=Domingo+C" alt="Opción C">
+                    <p>C</p>
+                </div>
+            </div>
+            <input type="hidden" name="p3" value="">
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div class="pregunta">
+            <p>4. ¿Quién es el profesor de español?</p>
+            <div class="opciones-imagenes">
+                <div class="opcion-imagen" data-pregunta="4" data-opcion="A">
+                    <img src="https://via.placeholder.com/150/FF5733/FFFFFF?text=Profesor+A" alt="Opción A">
+                    <p>A</p>
+                </div>
+                <div class="opcion-imagen" data-pregunta="4" data-opcion="B">
+                    <img src="https://via.placeholder.com/150/33FF57/FFFFFF?text=Profesor+B" alt="Opción B">
+                    <p>B</p>
+                </div>
+                <div class="opcion-imagen" data-pregunta="4" data-opcion="C">
+                    <img src="https://via.placeholder.com/150/3357FF/FFFFFF?text=Profesor+C" alt="Opción C">
+                    <p>C</p>
+                </div>
+            </div>
+            <input type="hidden" name="p4" value="">
+        </div>
+
+        <!-- Pregunta 5 -->
+        <div class="pregunta">
+            <p>5. ¿Qué le van a comprar a su madre?</p>
+            <div class="opciones-imagenes">
+                <div class="opcion-imagen" data-pregunta="5" data-opcion="A">
+                    <img src="https://via.placeholder.com/150/FF5733/FFFFFF?text=Regalo+A" alt="Opción A">
+                    <p>A</p>
+                </div>
+                <div class="opcion-imagen" data-pregunta="5" data-opcion="B">
+                    <img src="https://via.placeholder.com/150/33FF57/FFFFFF?text=Regalo+B" alt="Opción B">
+                    <p>B</p>
+                </div>
+                <div class="opcion-imagen" data-pregunta="5" data-opcion="C">
+                    <img src="https://via.placeholder.com/150/3357FF/FFFFFF?text=Regalo+C" alt="Opción C">
+                    <p>C</p>
+                </div>
+            </div>
+            <input type="hidden" name="p5" value="">
+        </div>
+
+        <!-- Tarea 2 -->
+        <h2>Tarea 2</h2>
+        <div class="instrucciones">
+            <p><strong>INSTRUCCIONES:</strong> Escucharás cinco mensajes. Relaciona cada mensaje (6-10) con las imágenes (A-I).</p>
+            <p><em>Nota: En una prueba real, aquí habría un reproductor de audio.</em></p>
+        </div>
+
+        <div class="texto">
+            <div class="opciones-imagenes">
+                <!-- Imágenes para la Tarea 2 -->
+                <div class="opcion-imagen">
+                    <img src="https://via.placeholder.com/150/FF5733/FFFFFF?text=Imagen+A" alt="Opción A">
+                    <p>A</p>
+                </div>
+                <div class="opcion-imagen">
+                    <img src="https://via.placeholder.com/150/33FF57/FFFFFF?text=Imagen+B" alt="Opción B">
+                    <p>B</p>
+                </div>
+                <div class="opcion-imagen">
+                    <img src="https://via.placeholder.com/150/3357FF/FFFFFF?text=Imagen+C" alt="Opción C">
+                    <p>C</p>
+                </div>
+                <div class="opcion-imagen">
+                    <img src="https://via.placeholder.com/150/FF33A8/FFFFFF?text=Imagen+D" alt="Opción D">
+                    <p>D</p>
+                </div>
+                <div class="opcion-imagen">
+                    <img src="https://via.placeholder.com/150/33FFF3/FFFFFF?text=Imagen+E" alt="Opción E">
+                    <p>E</p>
+                </div>
+                <div class="opcion-imagen">
+                    <img src="https://via.placeholder.com/150/F3FF33/FFFFFF?text=Imagen+F" alt="Opción F">
+                    <p>F</p>
+                </div>
+                <div class="opcion-imagen">
+                    <img src="https://via.placeholder.com/150/8C33FF/FFFFFF?text=Imagen+G" alt="Opción G">
+                    <p>G</p>
+                </div>
+                <div class="opcion-imagen">
+                    <img src="https://via.placeholder.com/150/FF8C33/FFFFFF?text=Imagen+H" alt="Opción H">
+                    <p>H</p>
+                </div>
+                <div class="opcion-imagen">
+                    <img src="https://via.placeholder.com/150/33FF8C/FFFFFF?text=Imagen+I" alt="Opción I">
+                    <p>I</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preguntas de matching Tarea 2 -->
+        <div class="pregunta">
+            <div class="matching-question">
+                <span>6. Mensaje 1</span>
+                <select class="matching-select" name="p6">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
+                    <option value="I">I</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>7. Mensaje 2</span>
+                <select class="matching-select" name="p7">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
+                    <option value="I">I</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>8. Mensaje 3</span>
+                <select class="matching-select" name="p8">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
+                    <option value="I">I</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>9. Mensaje 4</span>
+                <select class="matching-select" name="p9">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
+                    <option value="I">I</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>10. Mensaje 5</span>
+                <select class="matching-select" name="p10">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                    <option value="H">H</option>
+                    <option value="I">I</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Tarea 3 -->
+        <h2>Tarea 3</h2>
+        <div class="instrucciones">
+            <p><strong>INSTRUCCIONES:</strong> Escucharás a Mónica hablar sobre su familia. Relaciona cada nombre (11-18) con la información correcta (A-L).</p>
+            <p><em>Nota: En una prueba real, aquí habría un reproductor de audio.</em></p>
+        </div>
+
+        <div class="pregunta">
+            <div class="matching-question">
+                <span>11. Luis</span>
+                <select class="matching-select" name="p11">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - trabaja los sábados y domingos</option>
+                    <option value="B">B - es muy trabajador</option>
+                    <option value="C">C - es la pequeña de tres hermanos</option>
+                    <option value="D">D - es buena cocinera</option>
+                    <option value="E">E - va al cine</option>
+                    <option value="F">F - estudia Teatro</option>
+                    <option value="G">G - quiere ser médico</option>
+                    <option value="H">H - es actor</option>
+                    <option value="I">I - viaja por su trabajo</option>
+                    <option value="J">J - vive sola</option>
+                    <option value="K">K - trabaja en la universidad</option>
+                    <option value="L">L - es el primo pequeño</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>12. Manuel</span>
+                <select class="matching-select" name="p12">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - trabaja los sábados y domingos</option>
+                    <option value="B">B - es muy trabajador</option>
+                    <option value="C">C - es la pequeña de tres hermanos</option>
+                    <option value="D">D - es buena cocinera</option>
+                    <option value="E">E - va al cine</option>
+                    <option value="F">F - estudia Teatro</option>
+                    <option value="G">G - quiere ser médico</option>
+                    <option value="H">H - es actor</option>
+                    <option value="I">I - viaja por su trabajo</option>
+                    <option value="J">J - vive sola</option>
+                    <option value="K">K - trabaja en la universidad</option>
+                    <option value="L">L - es el primo pequeño</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>13. Julio</span>
+                <select class="matching-select" name="p13">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - trabaja los sábados y domingos</option>
+                    <option value="B">B - es muy trabajador</option>
+                    <option value="C">C - es la pequeña de tres hermanos</option>
+                    <option value="D">D - es buena cocinera</option>
+                    <option value="E">E - va al cine</option>
+                    <option value="F">F - estudia Teatro</option>
+                    <option value="G">G - quiere ser médico</option>
+                    <option value="H">H - es actor</option>
+                    <option value="I">I - viaja por su trabajo</option>
+                    <option value="J">J - vive sola</option>
+                    <option value="K">K - trabaja en la universidad</option>
+                    <option value="L">L - es el primo pequeño</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>14. Aurora</span>
+                <select class="matching-select" name="p14">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - trabaja los sábados y domingos</option>
+                    <option value="B">B - es muy trabajador</option>
+                    <option value="C">C - es la pequeña de tres hermanos</option>
+                    <option value="D">D - es buena cocinera</option>
+                    <option value="E">E - va al cine</option>
+                    <option value="F">F - estudia Teatro</option>
+                    <option value="G">G - quiere ser médico</option>
+                    <option value="H">H - es actor</option>
+                    <option value="I">I - viaja por su trabajo</option>
+                    <option value="J">J - vive sola</option>
+                    <option value="K">K - trabaja en la universidad</option>
+                    <option value="L">L - es el primo pequeño</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>15. Ana</span>
+                <select class="matching-select" name="p15">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - trabaja los sábados y domingos</option>
+                    <option value="B">B - es muy trabajador</option>
+                    <option value="C">C - es la pequeña de tres hermanos</option>
+                    <option value="D">D - es buena cocinera</option>
+                    <option value="E">E - va al cine</option>
+                    <option value="F">F - estudia Teatro</option>
+                    <option value="G">G - quiere ser médico</option>
+                    <option value="H">H - es actor</option>
+                    <option value="I">I - viaja por su trabajo</option>
+                    <option value="J">J - vive sola</option>
+                    <option value="K">K - trabaja en la universidad</option>
+                    <option value="L">L - es el primo pequeño</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>16. Felipe</span>
+                <select class="matching-select" name="p16">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - trabaja los sábados y domingos</option>
+                    <option value="B">B - es muy trabajador</option>
+                    <option value="C">C - es la pequeña de tres hermanos</option>
+                    <option value="D">D - es buena cocinera</option>
+                    <option value="E">E - va al cine</option>
+                    <option value="F">F - estudia Teatro</option>
+                    <option value="G">G - quiere ser médico</option>
+                    <option value="H">H - es actor</option>
+                    <option value="I">I - viaja por su trabajo</option>
+                    <option value="J">J - vive sola</option>
+                    <option value="K">K - trabaja en la universidad</option>
+                    <option value="L">L - es el primo pequeño</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>17. Rosa</span>
+                <select class="matching-select" name="p17">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - trabaja los sábados y domingos</option>
+                    <option value="B">B - es muy trabajador</option>
+                    <option value="C">C - es la pequeña de tres hermanos</option>
+                    <option value="D">D - es buena cocinera</option>
+                    <option value="E">E - va al cine</option>
+                    <option value="F">F - estudia Teatro</option>
+                    <option value="G">G - quiere ser médico</option>
+                    <option value="H">H - es actor</option>
+                    <option value="I">I - viaja por su trabajo</option>
+                    <option value="J">J - vive sola</option>
+                    <option value="K">K - trabaja en la universidad</option>
+                    <option value="L">L - es el primo pequeño</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>18. Joaquín</span>
+                <select class="matching-select" name="p18">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - trabaja los sábados y domingos</option>
+                    <option value="B">B - es muy trabajador</option>
+                    <option value="C">C - es la pequeña de tres hermanos</option>
+                    <option value="D">D - es buena cocinera</option>
+                    <option value="E">E - va al cine</option>
+                    <option value="F">F - estudia Teatro</option>
+                    <option value="G">G - quiere ser médico</option>
+                    <option value="H">H - es actor</option>
+                    <option value="I">I - viaja por su trabajo</option>
+                    <option value="J">J - vive sola</option>
+                    <option value="K">K - trabaja en la universidad</option>
+                    <option value="L">L - es el primo pequeño</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Tarea 4 -->
+        <h2>Tarea 4</h2>
+        <div class="instrucciones">
+            <p><strong>INSTRUCCIONES:</strong> Escucharás una conversación entre Alejandro y Carmen. Completa las frases (19-25) con las opciones correctas (A-I).</p>
+            <p><em>Nota: En una prueba real, aquí habría un reproductor de audio.</em></p>
+        </div>
+
+        <div class="pregunta">
+            <div class="matching-question">
+                <span>19. En el instituto hay ______</span>
+                <select class="matching-select" name="p19">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - actividades</option>
+                    <option value="B">B - autobús</option>
+                    <option value="C">C - compañeros simpáticos</option>
+                    <option value="D">D - coche</option>
+                    <option value="E">E - los sábados</option>
+                    <option value="F">F - buenos profesores</option>
+                    <option value="G">G - va a nadar</option>
+                    <option value="H">H - juega al fútbol</option>
+                    <option value="I">I - por la tarde</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>20. Alejandro tiene ______</span>
+                <select class="matching-select" name="p20">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - actividades</option>
+                    <option value="B">B - autobús</option>
+                    <option value="C">C - compañeros simpáticos</option>
+                    <option value="D">D - coche</option>
+                    <option value="E">E - los sábados</option>
+                    <option value="F">F - buenos profesores</option>
+                    <option value="G">G - va a nadar</option>
+                    <option value="H">H - juega al fútbol</option>
+                    <option value="I">I - por la tarde</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>21. Normalmente va en ______ al instituto.</span>
+                <select class="matching-select" name="p21">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - actividades</option>
+                    <option value="B">B - autobús</option>
+                    <option value="C">C - compañeros simpáticos</option>
+                    <option value="D">D - coche</option>
+                    <option value="E">E - los sábados</option>
+                    <option value="F">F - buenos profesores</option>
+                    <option value="G">G - va a nadar</option>
+                    <option value="H">H - juega al fútbol</option>
+                    <option value="I">I - por la tarde</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>22. Todos los martes ______</span>
+                <select class="matching-select" name="p22">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - actividades</option>
+                    <option value="B">B - autobús</option>
+                    <option value="C">C - compañeros simpáticos</option>
+                    <option value="D">D - coche</option>
+                    <option value="E">E - los sábados</option>
+                    <option value="F">F - buenos profesores</option>
+                    <option value="G">G - va a nadar</option>
+                    <option value="H">H - juega al fútbol</option>
+                    <option value="I">I - por la tarde</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>23. Tiene clase de música ______</span>
+                <select class="matching-select" name="p23">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - actividades</option>
+                    <option value="B">B - autobús</option>
+                    <option value="C">C - compañeros simpáticos</option>
+                    <option value="D">D - coche</option>
+                    <option value="E">E - los sábados</option>
+                    <option value="F">F - buenos profesores</option>
+                    <option value="G">G - va a nadar</option>
+                    <option value="H">H - juega al fútbol</option>
+                    <option value="I">I - por la tarde</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>24. Va a clase de inglés ______</span>
+                <select class="matching-select" name="p24">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - actividades</option>
+                    <option value="B">B - autobús</option>
+                    <option value="C">C - compañeros simpáticos</option>
+                    <option value="D">D - coche</option>
+                    <option value="E">E - los sábados</option>
+                    <option value="F">F - buenos profesores</option>
+                    <option value="G">G - va a nadar</option>
+                    <option value="H">H - juega al fútbol</option>
+                    <option value="I">I - por la tarde</option>
+                </select>
+            </div>
+
+            <div class="matching-question">
+                <span>25. Alejandro vuelve a casa en ______</span>
+                <select class="matching-select" name="p25">
+                    <option value="">Selecciona...</option>
+                    <option value="A">A - actividades</option>
+                    <option value="B">B - autobús</option>
+                    <option value="C">C - compañeros simpáticos</option>
+                    <option value="D">D - coche</option>
+                    <option value="E">E - los sábados</option>
+                    <option value="F">F - buenos profesores</option>
+                    <option value="G">G - va a nadar</option>
+                    <option value="H">H - juega al fútbol</option>
+                    <option value="I">I - por la tarde</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="button" id="submit-btn">Enviar respuestas</button>
+    </form>
+
+    <div id="results">
+        <h2>Resultados</h2>
+        <p>Puntuación: <span id="score">0</span>/25</p>
+        <p id="result-message"></p>
+    </div>
+
+    <script>
+        // Temporizador de 20 minutos
+        let timeLeft = 20 * 60;
+        const timerElement = document.getElementById('timer');
+        
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            
+            if (timeLeft <= 5 * 60) {
+                timerElement.style.color = '#e74c3c';
+            }
+            
+            timerElement.textContent = `${minutes}:${seconds}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                timerElement.textContent = "¡Tiempo terminado!";
+                submitExam();
+            } else {
+                timeLeft--;
+            }
+        }
+        
+        const timerInterval = setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Selección de imágenes
+        document.querySelectorAll('.opcion-imagen').forEach(opcion => {
+            opcion.addEventListener('click', function() {
+                const pregunta = this.getAttribute('data-pregunta');
+                const valor = this.getAttribute('data-opcion');
+                
+                // Deseleccionar otras opciones para esta pregunta
+                document.querySelectorAll(`.opcion-imagen[data-pregunta="${pregunta}"]`).forEach(el => {
+                    el.classList.remove('selected');
+                });
+                
+                // Seleccionar esta opción
+                this.classList.add('selected');
+                document.querySelector(`input[name="p${pregunta}"]`).value = valor;
+            });
+        });
+
+        // Respuestas correctas según la clave proporcionada
+        const correctAnswers = {
+            p1: "B", p2: "A", p3: "B", p4: "C", p5: "C",
+            p6: "A", p7: "I", p8: "D", p9: "C", p10: "H",
+            p11: "G", p12: "B", p13: "I", p14: "A", p15: "E",
+            p16: "L", p17: "D", p18: "H", p19: "F", p20: "C",
+            p21: "B", p22: "H", p23: "E", p24: "I", p25: "D"
+        };
+
+        // Enviar examen y calcular puntuación
+         document.getElementById('submit-btn').addEventListener('click', submitExam);
+
+        function submitExam() {
+            clearInterval(timerInterval);
+            
+            // Calcular puntuación
+            let score = 0;
+            const form = document.getElementById('exam-form');
+            const formData = new FormData(form);
+            
+            for (let [question, answer] of formData.entries()) {
+                if (correctAnswers[question] && answer === correctAnswers[question]) {
+                    score++;
+                }
+            }
+            
+            // Mostrar resultados
+            document.getElementById('score').textContent = score;
+            document.getElementById('results').style.display = 'block';
+            
+            // Mensaje según puntuación
+            const message = document.getElementById('result-message');
+            if (score >= 20) {
+                message.textContent = "¡Excelente trabajo! Has demostrado una gran comprensión auditiva.";
+            } else if (score >= 15) {
+                message.textContent = "Buen trabajo, pero hay margen para mejorar. Revisa tus errores.";
+            } else {
+                message.textContent = "Necesitas practicar más. Escucha atentamente los audios.";
+            }
+            
+            // Enviar por correo (simulado)
+            sendEmailResults(score, formData);
+        }
+
+        function sendEmailResults(score, formData) {
+            // Esto es una simulación - en un entorno real necesitarías un backend
+            const emailBody = `Resultados del examen de comprensión auditiva:\nPuntuación: ${score}/25\n\nRespuestas:\n`;
+            
+            for (let [question, answer] of formData.entries()) {
+                emailBody += `${question}: ${answer}\n`;
+            }
+            
+            // Alternativa para usuarios: abrir cliente de correo
+            const mailtoLink = `mailto:profesor@ejemplo.com?subject=Resultados%20Comprensión%20Auditiva&body=${encodeURIComponent(emailBody)}`;
+            window.open(mailtoLink, '_blank');
+        }
+    </script>
+</body>
+</html>
