@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exámenes DELE A1 Escolar</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+            margin-bottom: 30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .pruebas-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .prueba-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .prueba-card:hover {
+            transform: translateY(-5px);
+        }
+        .prueba-imagen {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+        .prueba-contenido {
+            padding: 20px;
+        }
+        .prueba-titulo {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .prueba-descripcion {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .prueba-boton {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .prueba-boton:hover {
+            background-color: #2980b9;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        @media (max-width: 600px) {
+            .pruebas-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Exámenes DELE A1 Escolar</h1>
+            <p>Preparación para el Diploma de Español como Lengua Extranjera</p>
+        </div>
+    </header>
 
+    <div class="container">
+        <div class="pruebas-container">
+            <!-- Prueba 1: Comprensión de lectura -->
+            <div class="prueba-card">
+                <div class="prueba-imagen" style="background-image: url('https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="prueba-contenido">
+                    <h2 class="prueba-titulo">Comprensión de lectura</h2>
+                    <p class="prueba-descripcion">Evalúa tu capacidad para entender textos escritos en español.</p>
+                    <a href="lectora.html" class="prueba-boton">Realizar prueba</a>
+                </div>
+            </div>
+
+            <!-- Prueba 2: Comprensión auditiva -->
+            <div class="prueba-card">
+                <div class="prueba-imagen" style="background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a5d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="prueba-contenido">
+                    <h2 class="prueba-titulo">Comprensión auditiva</h2>
+                    <p class="prueba-descripcion">Demuestra tu habilidad para comprender el español hablado.</p>
+                    <a href="auditiva.html" class="prueba-boton">Realizar prueba</a>
+                </div>
+            </div>
+
+            <!-- Prueba 3: Expresión e interacción escrita -->
+            <div class="prueba-card">
+                <div class="prueba-imagen" style="background-image: url('https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="prueba-contenido">
+                    <h2 class="prueba-titulo">Expresión escrita</h2>
+                    <p class="prueba-descripcion">Muestra tu capacidad para escribir en español.</p>
+                    <a href="escrita.html" class="prueba-boton">Realizar prueba</a>
+                </div>
+            </div>
+
+            <!-- Prueba 4: Expresión e interacción oral -->
+            <div class="prueba-card">
+                <div class="prueba-imagen" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="prueba-contenido">
+                    <h2 class="prueba-titulo">Expresión oral</h2>
+                    <p class="prueba-descripcion">Demuestra tu habilidad para comunicarte oralmente en español.</p>
+                    <a href="hablar.html" class="prueba-boton">Realizar prueba</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Preparación DELE A1 Escolar | Todos los derechos reservados</p>
+        </div>
+    </footer>
+</body>
+</html>
