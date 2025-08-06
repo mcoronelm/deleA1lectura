@@ -220,8 +220,8 @@
                 <li>Por qué te gusta</li>
                 <li>Una despedida</li>
             </ul>
-            <div class="contador-palabras">Número de palabras: <span id="contador">0</span>/40</div>
-        </div>
+           <div class="contador-palabras">Palabras: <span id="contador">0</span>/40</div>
+</div>
 
         <div class="email-form">
             <div class="email-field">
@@ -273,20 +273,25 @@
         updateTimer();
 
         // Contador de palabras para el correo
+       // Contador de palabras para el correo electrónico
         const mensajeTextarea = document.getElementById('mensaje');
         const contador = document.getElementById('contador');
-        
+
         mensajeTextarea.addEventListener('input', function() {
-            const texto = this.value.trim();
-            const palabras = texto === '' ? 0 : texto.split(/\s+/).length;
-            contador.textContent = palabras;
-            
-            if (palabras > 40) {
-                contador.style.color = '#e74c3c';
-            } else {
-                contador.style.color = '#666';
-            }
-        });
+    // Elimina espacios en blanco al inicio/final y cuenta palabras
+        const texto = this.value.trim();
+        const palabras = texto === '' ? 0 : texto.split(/\s+/).length;
+    
+    // Actualiza el contador
+        contador.textContent = palabras;
+    
+    // Cambia color si excede el límite
+    if (palabras > 40) {
+        contador.style.color = '#e74c3c'; // Rojo si pasa de 40
+    } else {
+        contador.style.color = '#666'; // Gris si está dentro del límite
+    }
+});
 
         // Simulación de envío
         document.querySelector('.btn-enviar').addEventListener('click', function() {
